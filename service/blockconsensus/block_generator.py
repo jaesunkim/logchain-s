@@ -46,7 +46,7 @@ def generate_block(difficulty, merkle_root, transactions):
         block_header.block_number = int(prev_block_height) + 1
         block_header.block_hash = block_hash
         block_header.block_info = block_info
-        block_header.miner = nodeproperty.Total_peer_num
+        block_header.miner = nodeproperty.My_IP_address
         block_header.num_tx = len(transactions)  
 
         monitoring.log("log.Create Block.")
@@ -57,11 +57,12 @@ def generate_block(difficulty, merkle_root, transactions):
         monitoring.log("log. ")
 
         end_time = time.time()
-        elapsed_time = end_time - start_time
-
-        monitoring.log("log.Block Generate Time Time: "+str(elapsed_time)+" seconds")
-        tps = voting.TransactionCountForConsensus / elapsed_time
-        monitoring.log("log.Transaction per second : "+ str(tps))
+        block_header.elapsed_time = end_time - start_time
+		
+        # monitoring.log("log.Block Generate Time Time: "+str(elapsed_time)+" seconds")
+        block_header.tps = voting.TransactionCountForConsensus / elapsed_time
+		
+        # monitoring.log("log.Transaction per second : "+ str(tps))
         file_controller.remove_all_transactions()
         file_controller.remove_all_voting()
 
