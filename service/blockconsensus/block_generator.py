@@ -51,17 +51,23 @@ def generate_block(difficulty, merkle_root, transactions):
 
         monitoring.log("log.Create Block.")
         new_block = block.Block(block_header, transactions)
+        # json_new_block = json.dumps(
+        #     new_block, indent=4, default=lambda o: o.__dict__, sort_keys=True)
+        # monitoring.log("log.Generate block complete")
+        # monitoring.log("log. ")
+
+        end_time = time.time()
+        block_header.elapsed_time = end_time - start_time
+
+        # monitoring.log("log.Block Generate Time Time: "+str(elapsed_time)+" seconds")
+        block_header.tps = voting.TransactionCountForConsensus / block_header.elapsed_time
+
         json_new_block = json.dumps(
             new_block, indent=4, default=lambda o: o.__dict__, sort_keys=True)
         monitoring.log("log.Generate block complete")
         monitoring.log("log. ")
 
-        end_time = time.time()
-        block_header.elapsed_time = end_time - start_time
-		
-        # monitoring.log("log.Block Generate Time Time: "+str(elapsed_time)+" seconds")
-        block_header.tps = voting.TransactionCountForConsensus / block_header.elapsed_time
-		
+
         # monitoring.log("log.Transaction per second : "+ str(tps))
         file_controller.remove_all_transactions()
         file_controller.remove_all_voting()
