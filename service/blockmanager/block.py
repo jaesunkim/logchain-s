@@ -22,6 +22,10 @@ class BlockHeader():
         self.timestamp = timestamp
         self.num_tx = None
 
+        self.elapsed_time = None
+        self.tps = None
+
+
 
 class Block():
     def __init__(self, block_header, tx_list=[]):

@@ -60,7 +60,7 @@ def generate_block(difficulty, merkle_root, transactions):
         block_header.elapsed_time = end_time - start_time
 		
         # monitoring.log("log.Block Generate Time Time: "+str(elapsed_time)+" seconds")
-        block_header.tps = voting.TransactionCountForConsensus / elapsed_time
+        block_header.tps = voting.TransactionCountForConsensus / block_header.elapsed_time
 		
         # monitoring.log("log.Transaction per second : "+ str(tps))
         file_controller.remove_all_transactions()
