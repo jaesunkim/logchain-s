@@ -36,7 +36,7 @@ def result_voting():
     print("My number of votes: "+ str(voting_count))
 
     if voting_count > MajorityCount :
-        difficulty = 2
+        difficulty = 10
         monitoring.log("log.result voting : "+ str(voting_count))
         return difficulty
     else:

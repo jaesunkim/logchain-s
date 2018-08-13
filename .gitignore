@@ -7,3 +7,4 @@ _BlockStorage/*
 _ContractStorage/*
 _DataStorage/*
 _VotingStorage/*
+service/blockconsensus/block_generator_temp.py
